@@ -16,6 +16,9 @@ void menu()
 	cout << " ================================================================ " << endl;
 }
 
+//calculations in void 
+
+
 void addition(int number1, int number2)
 {
 	cout << " Enter first number: " << endl;
@@ -75,22 +78,55 @@ void multiplying(int number1, int number2)
 	cout << " total is: " << total << endl;
 }
 
-void power(int number1)
+void power()
 {
-	int i, base, power;
+	int exponent;
+	float base, result = 1;
 
-	cout << " Enter base number: " << endl;
-	cin >> base;
+	cout << "Enter base and exponent respectively:  ";
+	cin >> base >> exponent;
 
-	cout << " Enter power number: " << endl;
-	cin >> power;
+	cout << base << "^" << exponent << " = ";
 
-	for (int i = 0; i < 10; i++)
-	{
-
+	while (exponent != 0) {
+		result *= base;
+		--exponent;
 	}
 
-	
+	cout << result << endl;
+}
+
+void remainder()
+{
+	int divisor, dividend, quotient, remainder;
+
+    cout << "Enter dividend: ";
+    cin >> dividend;
+
+    cout << "Enter divisor: ";
+    cin >> divisor;
+
+    quotient = dividend / divisor;
+    remainder = dividend % divisor;
+
+    cout << "Quotient = " << quotient << endl;
+	cout << "Remainder = " << remainder << endl;
+}
+
+void square()
+{
+	int number1;
+	int result;
+
+	cout << " Enter a number to be squared " << endl;
+	cin >> number1;
+
+	for (int number1 = 0; number1 < 10; number1++)
+	{
+		result = number1 * number1;
+
+		cout << number1 << " x " << number1 << " = " << result << endl;
+	}
 }
 
 void selector()
@@ -134,11 +170,21 @@ void selector()
 	
 	case 5:
 	
-		power(number1);
+		power();
 
 		break;
-	
-	
+
+	case 6:
+
+		remainder();
+
+		break;
+
+	case 7:
+
+		square();
+
+		break;
 	
 	case 0:
 
@@ -148,6 +194,7 @@ void selector()
 
 
 	default:
+		
 		cout << " wrong input " << endl;
 
 		break;
