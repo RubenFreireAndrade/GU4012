@@ -140,6 +140,15 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game1.cpp" />
+    <ClCompile Include="Map.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Map.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="map1.txt" />
+    <Text Include="map2.txt" />
+    <Text Include="map3.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

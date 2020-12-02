@@ -1,6 +1,7 @@
 #include<iostream>
 #include<string>
 #include <conio.h>
+#include "Map.h"
 
 using namespace std;
 
@@ -9,37 +10,19 @@ using namespace std;
 #define KEY_LEFT 75 
 #define KEY_RIGHT 77
 
-int playerX = 1, playerY = 1;
-
-char map[10][10] = {
-	{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-	{'X', '@', '.', '.', '.', '.', '.', '.', '.', 'X'},
-	{'X', '.', '.', '.', '.', '.', '.', '.', '.', 'X'},
-	{'X', '.', '.', '.', '.', '.', '.', '.', '.', 'X'},
-	{'X', '.', '.', '.', '.', '.', '.', '.', '.', 'X'},
-	{'X', '.', '.', '.', '.', '.', '.', '.', '.', 'X'},
-	{'X', '.', '.', '.', '.', '.', '.', '.', '.', 'X'},
-	{'X', '.', '.', '.', '.', '.', '.', '.', '.', 'X'},
-	{'X', '.', '.', '.', '.', '.', '.', '.', '.', 'X'},
-	{'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X', 'X'},
-};
 
 int main()
 {
 	int keyCode = 0;
+	int mapNumber = 1;
+	int moveResult = 0;
+
+	Map currentMap = *new Map("map1");
 
 	while (true)
 	{
-		system("CLS");
-		for (int y = 0; y < 10; y++)
-		{
-			for (int x = 0; x < 10; x++)
-			{
-				cout << map[y][x];
-
-			}
-			cout << endl;
-		}
+		moveResult = 0;
+		currentMap.Draw();
 		
 
 		keyCode = _getch();
@@ -48,50 +31,36 @@ int main()
 		{
 		case KEY_RIGHT:
 
-			if (map[playerY][playerX+1] == '.')
-			{
-				map[playerY][playerX] = '.';
-				playerX++;
-				map[playerY][playerX] = '@';
-			}
+			moveResult = currentMap.Move(currentMap.playerX + 1, currentMap.playerY);
 
 			break;
 
 		case KEY_LEFT:
 
-			if (map[playerY][playerX - 1] == '.')
-			{
-				map[playerY][playerX] = '.';
-				playerX--;
-				map[playerY][playerX] = '@';
-			}
+			moveResult = currentMap.Move(currentMap.playerX - 1, currentMap.playerY);
 
 			break;
 
 		case KEY_DOWN:
 
-			if (map[playerY + 1][playerX] == '.')
-			{
-				map[playerY][playerX] = '.';
-				playerY++;
-				map[playerY][playerX] = '@';
-			}
+			moveResult = currentMap.Move(currentMap.playerX, currentMap.playerY + 1);
 
 			break;
 
 		case KEY_UP:
 
-			if (map[playerY - 1][playerX] == '.')
-			{
-				map[playerY][playerX] = '.';
-				playerY--;
-				map[playerY][playerX] = '@';
-			}
+			moveResult = currentMap.Move(currentMap.playerX, currentMap.playerY - 1);
 
 			break;
 
 		default:
 			break;
+		}
+
+		if (moveResult == 2)
+		{
+			mapNumber++;
+			currentMap.LoadMap("map" + to_string(mapNumber));
 		}
 	}
 
